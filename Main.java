@@ -12,6 +12,8 @@ public class Main extends Application {
   private int boardSize = 3;
   private int currentPlayer = 1;
 
+  private boolean isGamePlaying = true;
+
   private Image oIcon = new Image(getClass().getResourceAsStream("o.png"));
   private Image xIcon = new Image(getClass().getResourceAsStream("x.png"));
 
@@ -74,13 +76,18 @@ public class Main extends Application {
     int btnRow = getRowOfButton(index);
     int btnCol = getColumnOfButton(index);
 
-    if (!gameBoard.checkIfOwned(btnRow, btnCol)) {
+    if (isGamePlaying && !gameBoard.checkIfOwned(btnRow, btnCol)) {
       if (currentPlayer == 1) button.setGraphic(new ImageView(xIcon));
       else if (currentPlayer == 2) button.setGraphic(new ImageView(oIcon));
 
       gameBoard.assignOwner(getRowOfButton(index), getColumnOfButton(index), currentPlayer);
 
       swapCurrentPlayer();
+    }
+
+    if (gameBoard.checkForWin()) {
+      isGamePlaying = false;
+      System.out.println(gameBoard.getWinner());
     }
   }
 
