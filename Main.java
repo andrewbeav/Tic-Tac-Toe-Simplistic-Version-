@@ -70,14 +70,18 @@ public class Main extends Application {
   }
 
   private void handleButtonEvent(Button button) {
-    if (currentPlayer == 1) button.setGraphic(new ImageView(xIcon));
-    else if (currentPlayer == 2) button.setGraphic(new ImageView(oIcon));
-
-    swapCurrentPlayer();
-
     int index = findIndexOfButton(button);
+    int btnRow = getRowOfButton(index);
+    int btnCol = getColumnOfButton(index);
 
-    gameBoard.assignOwner(currentPlayer, getRowOfButton(index), getColumnOfButton(index));
+    if (!gameBoard.checkIfOwned(btnRow, btnCol)) {
+      if (currentPlayer == 1) button.setGraphic(new ImageView(xIcon));
+      else if (currentPlayer == 2) button.setGraphic(new ImageView(oIcon));
+
+      gameBoard.assignOwner(getRowOfButton(index), getColumnOfButton(index), currentPlayer);
+
+      swapCurrentPlayer();
+    }
   }
 
   private void swapCurrentPlayer() {
