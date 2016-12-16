@@ -5,6 +5,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.image.*;
 import java.util.*;
+import javafx.geometry.*;
 
 public class WinnerDialog {
 
@@ -16,12 +17,20 @@ public class WinnerDialog {
     stage.setMinWidth(200);
     stage.setMinHeight(100);
 
-    GridPane layout = new GridPane();
-
     Label label = new Label(message);
-    layout.setTop(label);
+    Button playAgainButton = new Button("Play Again");
+    Button exitButton = new Button("Quit Game");
 
-    Scene scene = new Scene(layout);
+    VBox layout = new VBox(10);
+    layout.setAlignment(Pos.CENTER);
+
+    HBox buttonLayout = new HBox(10);
+    buttonLayout.getChildren().addAll(playAgainButton, exitButton);
+    buttonLayout.setAlignment(Pos.CENTER);
+
+    layout.getChildren().addAll(label, buttonLayout);
+
+    Scene scene = new Scene(layout, 335, 100);
     stage.setScene(scene);
     stage.show();
   }
