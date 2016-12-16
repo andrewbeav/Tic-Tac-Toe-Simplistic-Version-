@@ -87,7 +87,7 @@ public class Main extends Application {
 
     if (gameBoard.checkForWin()) {
       isGamePlaying = false;
-      System.out.println(gameBoard.getWinner());
+      WinnerDialog.show("Player " + gameBoard.getWinner() + " won the game!");
     }
   }
 
