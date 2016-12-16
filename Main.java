@@ -21,11 +21,15 @@ public class Main extends Application {
 
   GridPane buttonGrid;
 
+  Stage primaryStage;
+
   public static void main(String[] args) {
     launch(args);
   }
 
   public void start(Stage primaryStage) {
+
+    this.primaryStage = primaryStage;
 
     // Board Stuff
     gameBoard = new Board(boardSize);
@@ -87,8 +91,21 @@ public class Main extends Application {
 
     if (gameBoard.checkForWin()) {
       isGamePlaying = false;
-      WinnerDialog.show("Player " + gameBoard.getWinner() + " won the game!");
+      if (WinnerDialog.show("Player " + gameBoard.getWinner() + " won the game!") == true) {
+        resetGui();
+      } else {
+        primaryStage.close();
+      }
     }
+  }
+
+  private void resetGui() {
+    for(Button button : buttonList) {
+      button.setGraphic(null);
+      gameBoard.reset();
+    }
+
+    isGamePlaying = true;
   }
 
   private void swapCurrentPlayer() {

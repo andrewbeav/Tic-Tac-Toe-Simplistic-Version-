@@ -9,8 +9,12 @@ import javafx.geometry.*;
 
 public class WinnerDialog {
 
-  public static void show(String message) {
+  private static boolean toResetBoard = false;
+
+  public static boolean show(String message) {
     Stage stage = new Stage();
+
+    toResetBoard = false;
 
     stage.initModality(Modality.APPLICATION_MODAL);
     stage.setTitle("Congratulations!");
@@ -29,6 +33,16 @@ public class WinnerDialog {
     Button playAgainButton = new Button("Play Again");
     Button exitButton = new Button("Quit Game");
 
+    playAgainButton.setOnAction(e -> {
+      stage.close();
+      toResetBoard = true;
+    });
+
+    exitButton.setOnAction(e -> {
+      stage.close();
+      toResetBoard = false;
+    });
+
     playAgainButton.getStyleClass().add("button");
     exitButton.getStyleClass().add("button");
 
@@ -40,7 +54,9 @@ public class WinnerDialog {
     Scene scene = new Scene(layout, 335, 100);
     scene.getStylesheets().add("winner_dialog_styles.css");
     stage.setScene(scene);
-    stage.show();
+    stage.showAndWait();
+
+    return toResetBoard;
   }
 
 }
