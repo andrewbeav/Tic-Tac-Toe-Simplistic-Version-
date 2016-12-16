@@ -18,19 +18,27 @@ public class WinnerDialog {
     stage.setMinHeight(100);
 
     Label label = new Label(message);
-    Button playAgainButton = new Button("Play Again");
-    Button exitButton = new Button("Quit Game");
+    label.getStyleClass().add("label");
 
     VBox layout = new VBox(10);
+    layout.getStyleClass().add("background");
     layout.setAlignment(Pos.CENTER);
 
     HBox buttonLayout = new HBox(10);
+
+    Button playAgainButton = new Button("Play Again");
+    Button exitButton = new Button("Quit Game");
+
+    playAgainButton.getStyleClass().add("button");
+    exitButton.getStyleClass().add("button");
+
     buttonLayout.getChildren().addAll(playAgainButton, exitButton);
     buttonLayout.setAlignment(Pos.CENTER);
 
     layout.getChildren().addAll(label, buttonLayout);
 
     Scene scene = new Scene(layout, 335, 100);
+    scene.getStylesheets().add("winner_dialog_styles.css");
     stage.setScene(scene);
     stage.show();
   }

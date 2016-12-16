@@ -1,0 +1,12 @@
+.background {
+  -fx-background-color: "#bbbdc1";
+}
+
+.label {
+  -fx-font-size: x-large;
+  -fx-color: rgb(7, 7, 7);
+}
+
+.button {
+  -fx-background-color: rgb(100, 110, 127);
+}
