@@ -30,6 +30,7 @@ public class Main extends Application {
   public void start(Stage primaryStage) {
 
     this.primaryStage = primaryStage;
+    primaryStage.setTitle("Tic Tac Toe");
 
     // Board Stuff
     gameBoard = new Board(boardSize);
