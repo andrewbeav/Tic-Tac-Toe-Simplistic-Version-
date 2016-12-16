@@ -14,12 +14,11 @@ public class WinnerDialog {
     stage.initModality(Modality.APPLICATION_MODAL);
     stage.setTitle("Congratulations!");
     stage.setMinWidth(200);
-    stage.setMinHeight(100);s
+    stage.setMinHeight(100);
+
+    BorderPane layout = new BorderPane();
 
     Label label = new Label(message);
-
-    HBox layout = new HBox();
-    layout.getChildren().add(label);
 
     Scene scene = new Scene(layout);
     stage.setScene(scene);
