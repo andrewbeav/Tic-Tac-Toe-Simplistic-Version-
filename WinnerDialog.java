@@ -16,9 +16,10 @@ public class WinnerDialog {
     stage.setMinWidth(200);
     stage.setMinHeight(100);
 
-    BorderPane layout = new BorderPane();
+    GridPane layout = new GridPane();
 
     Label label = new Label(message);
+    layout.setTop(label);
 
     Scene scene = new Scene(layout);
     stage.setScene(scene);
