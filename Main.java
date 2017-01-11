@@ -94,7 +94,17 @@ public class Main extends Application {
       isGamePlaying = false;
       if (WinnerDialog.show("Player " + gameBoard.getWinner() + " won the game!") == true) {
         resetGui();
-      } else {
+      }
+      else {
+        primaryStage.close();
+      }
+    }
+    else if (gameBoard.checkForScratch()) {
+      isGamePlaying = false;
+      if (WinnerDialog.show("Scratch!")){
+        resetGui();
+      }
+      else {
         primaryStage.close();
       }
     }
